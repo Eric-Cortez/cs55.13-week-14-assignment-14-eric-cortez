@@ -27,6 +27,7 @@ export async function getStaticProps() {
       allPostsData,
       allProductsData,
     },
+    revalidate: 60, // Re-generate the page at most once every 60 seconds
   };
 }
 
