@@ -51,10 +51,6 @@ export default function Home({ allPostsData, allProductsData, allOrdersData, all
           My passion lies in solving complex problems, learning new technologies, and collaborating with others to create impactful software solutions.
           In my free time, I like exploring new programming languages and contributing to open source projects.
         </p>
-        <p className={styles.secondaryText}>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Products</h2>

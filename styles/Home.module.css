@@ -1,69 +1,143 @@
 .introText {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: rgb(95, 7, 95);
-  font-family: monospace;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
 }
 
 .bgColor {
-  background-color: #f0f0f0;
-  padding: 40px;
-  border-radius: 5px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-light) 0%,
+    var(--accent-color) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.bgColor .introText {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .secondaryText {
-  font-size: 12px;
-  color: #666;
-  margin-top: 20px;
+  font-size: 0.875rem;
+  color: var(--text-light);
+  margin-top: 1.5rem;
   font-style: italic;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-color);
 }
 
 .postCard {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  margin-top: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  text-align: center;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  background: var(--surface);
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.postCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px var(--shadow);
+  border-color: var(--primary-color);
 }
 
 .postLink {
   text-decoration: none;
-  color: purple;
-  font-weight: bold;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
 }
+
 .postLink:hover {
-  text-decoration: underline;
+  color: var(--secondary-color);
+  text-decoration: none;
 }
 
 .headingAlign {
   text-align: center;
-  color: rgb(67, 66, 66);
-  font-family: "Arial", sans-serif;
+  color: var(--text-primary);
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02rem;
 }
 
-/* New: styling for (Week 4: Assignment 5: Draft Basic Full-Stack App) */
+/* Styled list items */
 .postListItem {
-  padding: 12px 16px;
-  border: 1px solid #ececec;
-  border-radius: 8px;
-  background: #ffffff;
-  transition: box-shadow 0.2s ease, transform 0.1s ease;
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--surface);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.postListItem::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.postListItem:hover::before {
+  transform: scaleY(1);
 }
 
 .postListItem:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 20px var(--shadow);
+  transform: translateX(4px);
+  border-color: var(--primary-light);
 }
 
 .postListItemTitle {
-  color: #4b2a7b;
+  color: var(--primary-color);
   font-weight: 600;
+  font-size: 1.15rem;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.postListItem:hover .postListItemTitle {
+  color: var(--secondary-color);
 }
 
 .postListItemMeta {
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.9rem;
+  margin-top: 0.75rem;
 }
