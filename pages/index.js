@@ -12,25 +12,27 @@ import Link from 'next/link';
 import Date from '../components/date';
 
 // Import helper that returns blog posts sorted by date
-import { getSortedPostsData } from '../lib/data'; // Changed from posts.js to posts-json.js
+import { getSortedPostsData, getSortedProductData } from '../lib/data'; // Changed from posts.js to posts-json.js
 
 // Next.js build-time data fetch: runs at build, not on the client
 export async function getStaticProps() {
   // Read and sort posts data from the filesystem
   const allPostsData = await getSortedPostsData();
+  const allProductsData = await getSortedProductData();
   // Return props object that will be passed to the page component
   return {
     // Props key required by Next.js for passing data to the page
     props: {
       // The array of posts made available as a prop to the Home component
       allPostsData,
+      allProductsData,
     },
   };
 }
 
 // Define and export the default Home component function and add incoming props
 // allPostsData comes from getStaticProps at build time
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, allProductsData }) {
   // Return the JSX structure for the home page
   return (
     <Layout home>
@@ -51,12 +53,28 @@ export default function Home({ allPostsData }) {
       </section>
       {/* Blog list rendered from build-time data */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Products</h2>
+        <h2 className={utilStyles.headingLg}>Posts</h2>
         <ul className={utilStyles.list}>
           {/* Iterate posts and render basic details */}
           {allPostsData.map(({ id, date, title, author }) => (
             <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
               <Link className={styles.postListItemTitle} href={`/posts/${id}`}>{title}</Link>
+              <br />
+              <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
+                <Date dateString={date} />
+                <p className={utilStyles.authorText}>By User-{author}</p>
+              </small>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Products</h2>
+        <ul className={utilStyles.list}>
+          {/* Iterate products and render basic details */}
+          {allProductsData.map(({ id, date, title, author }) => (
+            <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
+              <Link className={styles.postListItemTitle} href={`/products/${id}`}>{title}</Link>
               <br />
               <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
                 <Date dateString={date} />
