@@ -12,13 +12,15 @@ import Link from 'next/link';
 import Date from '../components/date';
 
 // Import helper that returns blog posts sorted by date
-import { getSortedPostsData, getSortedProductData } from '../lib/data'; // Changed from posts.js to posts-json.js
+import { getSortedPostsData, getSortedProductData, getSortedOrderData, getSortedCustomerData } from '../lib/data'; // Changed from posts.js to posts-json.js
 
 // Next.js build-time data fetch: runs at build, not on the client
 export async function getStaticProps() {
   // Read and sort posts data from the filesystem
   const allPostsData = await getSortedPostsData();
   const allProductsData = await getSortedProductData();
+  const allOrdersData = await getSortedOrderData();
+  const allCustomersData = await getSortedCustomerData();
   // Return props object that will be passed to the page component
   return {
     // Props key required by Next.js for passing data to the page
@@ -26,6 +28,8 @@ export async function getStaticProps() {
       // The array of posts made available as a prop to the Home component
       allPostsData,
       allProductsData,
+      allOrdersData,
+      allCustomersData,
     },
     revalidate: 60, // Re-generate the page at most once every 60 seconds
   };
@@ -33,7 +37,7 @@ export async function getStaticProps() {
 
 // Define and export the default Home component function and add incoming props
 // allPostsData comes from getStaticProps at build time
-export default function Home({ allPostsData, allProductsData }) {
+export default function Home({ allPostsData, allProductsData, allOrdersData, allCustomersData }) {
   // Return the JSX structure for the home page
   return (
     <Layout home>
@@ -52,6 +56,56 @@ export default function Home({ allPostsData, allProductsData }) {
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Products</h2>
+        <ul className={utilStyles.list}>
+          {/* Iterate products and render basic details */}
+          {allProductsData.map(({ id, date, title, sku }) => (
+            <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
+              <Link className={styles.postListItemTitle} href={`/products/${id}`}>{title}</Link>
+              <br />
+              <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
+                <Date dateString={date} />
+                <p className={utilStyles.authorText}>SKU: {sku}</p>
+              </small>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Orders</h2>
+        <ul className={utilStyles.list}>
+          {/* Iterate orders and render basic details */}
+          {allOrdersData.map(({ id, date, item_name, order_number, price }) => (
+            <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
+              <Link className={styles.postListItemTitle} href={`/orders/${id}`}>{item_name}</Link>
+              <br />
+              <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
+                <Date dateString={date} />
+                <p className={utilStyles.authorText}>Order #: {order_number}</p>
+                <p className={utilStyles.authorText}>Price: ${price}</p>
+              </small>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Customers</h2>
+        <ul className={utilStyles.list}>
+          {/* Iterate customers and render basic details */}
+          {allCustomersData.map(({ id, date, name, email, address }) => (
+            <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
+              <Link className={styles.postListItemTitle} href={`/customers/${id}`}>{name}</Link>
+              <br />
+              <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
+                <Date dateString={date} />
+                <p className={utilStyles.authorText}>Email: {email}</p>
+                <p className={utilStyles.authorText}>Address: {address}</p>
+              </small>
+            </li>
+          ))}
+        </ul>
+      </section>
       {/* Blog list rendered from build-time data */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Posts</h2>
@@ -64,22 +118,6 @@ export default function Home({ allPostsData, allProductsData }) {
               <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
                 <Date dateString={date} />
                 <p className={utilStyles.authorText}>By User-{author}</p>
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Products</h2>
-        <ul className={utilStyles.list}>
-          {/* Iterate products and render basic details */}
-          {allProductsData.map(({ id, date, title, sku }) => (
-            <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
-              <Link className={styles.postListItemTitle} href={`/products/${id}`}>{title}</Link>
-              <br />
-              <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
-                <Date dateString={date} />
-                <p className={utilStyles.authorText}>SKU: {sku}</p>
               </small>
             </li>
           ))}
