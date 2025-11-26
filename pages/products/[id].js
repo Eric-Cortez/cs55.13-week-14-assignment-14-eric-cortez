@@ -53,6 +53,9 @@ export default function Product({ productData }) {
                     {productData.sku && (
                         <p className={utilStyles.authorText}>SKU: {productData.sku}</p>
                     )}
+                    {productData.price && (
+                        <p className={utilStyles.authorText}>Price: {productData.price}</p>
+                    )}
                 </div>
                 <div className={utilStyles.articleContent} dangerouslySetInnerHTML={{ __html: productData.contentHtml }} />
             </article>

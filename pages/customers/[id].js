@@ -48,6 +48,7 @@ export default function Customer({ customerData }) {
                     <Date dateString={customerData.date} />
                     <p className={utilStyles.authorText}>Email: {customerData.email}</p>
                     <p className={utilStyles.authorText}>Address: {customerData.address}</p>
+                    <p className={utilStyles.authorText}>Age: {customerData.age}</p>
                 </div>
                 <div className={utilStyles.articleContent} dangerouslySetInnerHTML={{ __html: customerData.contentHtml }} />
             </article>

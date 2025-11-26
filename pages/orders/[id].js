@@ -48,6 +48,7 @@ export default function Order({ orderData }) {
                     <Date dateString={orderData.date} />
                     <p className={utilStyles.authorText}>Order Number: {orderData.order_number}</p>
                     <p className={utilStyles.authorText}>Price: {orderData.price}</p>
+                    <p className={utilStyles.authorText}>Count: {orderData.count}</p>
                 </div>
                 <div className={utilStyles.articleContent} dangerouslySetInnerHTML={{ __html: orderData.contentHtml }} />
             </article>

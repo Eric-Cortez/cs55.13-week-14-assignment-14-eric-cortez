@@ -60,13 +60,14 @@ export default function Home({ allPostsData, allProductsData, allOrdersData, all
         <h2 className={utilStyles.headingLg}>Products</h2>
         <ul className={utilStyles.list}>
           {/* Iterate products and render basic details */}
-          {allProductsData.map(({ id, date, title, sku }) => (
+          {allProductsData.map(({ id, date, title, sku, price }) => (
             <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
               <Link className={styles.postListItemTitle} href={`/products/${id}`}>{title}</Link>
               <br />
               <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
                 <Date dateString={date} />
                 <p className={utilStyles.authorText}>SKU: {sku}</p>
+                <p className={utilStyles.authorText}>Price: {price}</p>
               </small>
             </li>
           ))}
@@ -76,14 +77,15 @@ export default function Home({ allPostsData, allProductsData, allOrdersData, all
         <h2 className={utilStyles.headingLg}>Orders</h2>
         <ul className={utilStyles.list}>
           {/* Iterate orders and render basic details */}
-          {allOrdersData.map(({ id, date, item_name, order_number, price }) => (
+          {allOrdersData.map(({ id, date, item_name, order_number, price, count }) => (
             <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
               <Link className={styles.postListItemTitle} href={`/orders/${id}`}>{item_name}</Link>
               <br />
               <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
                 <Date dateString={date} />
                 <p className={utilStyles.authorText}>Order #: {order_number}</p>
-                <p className={utilStyles.authorText}>Price: ${price}</p>
+                <p className={utilStyles.authorText}>Price: {price}</p>
+                <p className={utilStyles.authorText}>Count: {count}</p>
               </small>
             </li>
           ))}
@@ -93,7 +95,7 @@ export default function Home({ allPostsData, allProductsData, allOrdersData, all
         <h2 className={utilStyles.headingLg}>Customers</h2>
         <ul className={utilStyles.list}>
           {/* Iterate customers and render basic details */}
-          {allCustomersData.map(({ id, date, name, email, address }) => (
+          {allCustomersData.map(({ id, date, name, email, address, age }) => (
             <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
               <Link className={styles.postListItemTitle} href={`/customers/${id}`}>{name}</Link>
               <br />
@@ -101,6 +103,7 @@ export default function Home({ allPostsData, allProductsData, allOrdersData, all
                 <Date dateString={date} />
                 <p className={utilStyles.authorText}>Email: {email}</p>
                 <p className={utilStyles.authorText}>Address: {address}</p>
+                <p className={utilStyles.authorText}>Age: {age}</p>
               </small>
             </li>
           ))}
