@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Starting My Next.js Blog",
+    "date": "2025-09-15",
+    "author": "Eric Cortez",
+    "contentHtml": "<p>I kicked off this little blog to practice static site generation with Next.js and to keep notes on what I learn week to week. The goal is to keep posts short and focused so I can ship something daily without overthinking it.</p><p>I’ll iterate on the UI later. For now, I’m wiring up data fetching, dynamic routes, and some basic components like a `<Date />` formatter to make posts readable.</p>",
+    "id": 1
+  },
+  {
+    "title": "Using PR Templates to Improve Reviews",
+    "date": "2025-09-14",
+    "author": "Eric Cortez",
+    "contentHtml": "<p>I added a simple pull request template today and it immediately made my review process smoother. For small projects, it’s easy to skip good descriptions and testing notes—templates nudge you to include the essentials.</p><p>My template sections are: summary, changes, screenshots, testing steps, and risks. Even a minimal checklist reduces back-and-forth and surfaces edge cases before merge.</p>",
+    "id": 2
+  },
+  {
+    "title": "Semantic Git Commits that Tell a Story",
+    "date": "2025-09-13",
+    "author": "Eric Cortez",
+    "contentHtml": "<p>I started using semantic prefixes (feat, fix, docs, chore, refactor, perf, test) and it’s surprising how much clarity they add to the history. Skimming the log now gives me a narrative of the project’s evolution.</p><p>This also pairs well with automated release tooling. Even if you don’t automate, consistent messages make code reviews and retros a lot easier.</p>",
+    "id": 3
+  }
+]

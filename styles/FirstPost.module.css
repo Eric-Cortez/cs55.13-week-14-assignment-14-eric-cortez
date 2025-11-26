@@ -1,0 +1,23 @@
+.headingAlign {
+  text-align: center;
+  color: rgb(67, 66, 66);
+  font-family: "Arial", sans-serif;
+}
+
+.postCard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.postText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  font-family: monospace;
+  text-align: start;
+}
