@@ -73,13 +73,13 @@ export default function Home({ allPostsData, allProductsData }) {
         <h2 className={utilStyles.headingLg}>Products</h2>
         <ul className={utilStyles.list}>
           {/* Iterate products and render basic details */}
-          {allProductsData.map(({ id, date, title, author }) => (
+          {allProductsData.map(({ id, date, title, sku }) => (
             <li className={`${utilStyles.listItem} ${styles.postListItem}`} key={id}>
               <Link className={styles.postListItemTitle} href={`/products/${id}`}>{title}</Link>
               <br />
               <small className={`${utilStyles.lightText} ${styles.postListItemMeta}`}>
                 <Date dateString={date} />
-                <p className={utilStyles.authorText}>By User-{author}</p>
+                <p className={utilStyles.authorText}>SKU: {sku}</p>
               </small>
             </li>
           ))}
